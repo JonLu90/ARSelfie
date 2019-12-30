@@ -15,6 +15,8 @@
 		EB212E7D23B86C0700822C72 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB212E7B23B86C0700822C72 /* LaunchScreen.storyboard */; };
 		EB212E8823B86C0700822C72 /* ARStuffTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB212E8723B86C0700822C72 /* ARStuffTests.swift */; };
 		EB212E9323B86C0700822C72 /* ARStuffUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB212E9223B86C0700822C72 /* ARStuffUITests.swift */; };
+		EB212EA123B9B6E400822C72 /* EmojiNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB212EA023B9B6E300822C72 /* EmojiNode.swift */; };
+		EB212EA323B9B80400822C72 /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB212EA223B9B80400822C72 /* StringExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		EB212E8E23B86C0700822C72 /* ARStuffUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ARStuffUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB212E9223B86C0700822C72 /* ARStuffUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARStuffUITests.swift; sourceTree = "<group>"; };
 		EB212E9423B86C0700822C72 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EB212EA023B9B6E300822C72 /* EmojiNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiNode.swift; sourceTree = "<group>"; };
+		EB212EA223B9B80400822C72 /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				EB212E7923B86C0700822C72 /* Assets.xcassets */,
 				EB212E7B23B86C0700822C72 /* LaunchScreen.storyboard */,
 				EB212E7E23B86C0700822C72 /* Info.plist */,
+				EB212EA023B9B6E300822C72 /* EmojiNode.swift */,
+				EB212EA223B9B80400822C72 /* StringExtension.swift */,
 			);
 			path = ARStuff;
 			sourceTree = "<group>";
@@ -259,7 +265,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB212EA123B9B6E400822C72 /* EmojiNode.swift in Sources */,
 				EB212E7523B86C0500822C72 /* ViewController.swift in Sources */,
+				EB212EA323B9B80400822C72 /* StringExtension.swift in Sources */,
 				EB212E7123B86C0500822C72 /* AppDelegate.swift in Sources */,
 				EB212E7323B86C0500822C72 /* SceneDelegate.swift in Sources */,
 			);
@@ -366,7 +374,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -420,7 +428,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -435,6 +443,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J4DG8AJ379;
 				INFOPLIST_FILE = ARStuff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -452,6 +461,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = J4DG8AJ379;
 				INFOPLIST_FILE = ARStuff/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
