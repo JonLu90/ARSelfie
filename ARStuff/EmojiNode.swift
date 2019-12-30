@@ -13,13 +13,13 @@ class EmojiNode: SCNNode {
   var options: [String]
   var index = 0
   
-  init(with options: [String], width: CGFloat = 0.06, height: CGFloat = 0.06) {
+  init(with options: [String], width: CGFloat = 0.06, height: CGFloat = 0.02) {
     self.options = options
     
     super.init()
     
     let plane = SCNPlane(width: width, height: height)
-    plane.firstMaterial?.diffuse.contents = (options.first ?? " ").image()
+    plane.firstMaterial?.diffuse.contents = UIImage(named: options.first ?? "")
     plane.firstMaterial?.isDoubleSided = true
     
     geometry = plane
@@ -43,7 +43,7 @@ extension EmojiNode {
     index = (index + 1) % options.count
     
     if let plane = geometry as? SCNPlane {
-      plane.firstMaterial?.diffuse.contents = options[index].image()
+        plane.firstMaterial?.diffuse.contents = UIImage(named: options[index])
       plane.firstMaterial?.isDoubleSided = true
     }
   }
