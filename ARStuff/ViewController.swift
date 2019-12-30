@@ -93,13 +93,8 @@ class ViewController: UIViewController {
     }
     
     private func updateFeatures(for node: SCNNode, using anchor: ARFaceAnchor) {
-      // 1
       let child = node.childNode(withName: "forehead", recursively: false) as? EmojiNode
-
-      // 2
       let vertices = [anchor.geometry.vertices[20]]
-      
-      // 3
       child?.updatePosition(for: vertices)
     }
     
@@ -142,20 +137,11 @@ extension ViewController: ARSCNViewDelegate {
         let faceGeometry = ARSCNFaceGeometry(device: device)
         let node = SCNNode(geometry: faceGeometry)
         node.geometry?.firstMaterial?.fillMode = .lines
-        
-        // 1
         node.geometry?.firstMaterial?.transparency = 0.0
-
-        // 2
         let foreheadNode = EmojiNode(with: options)
-
-        // 3
         foreheadNode.name = "forehead"
-
-        // 4
         node.addChildNode(foreheadNode)
 
-        // 5
         updateFeatures(for: node, using: faceAnchor)
         
         return node
