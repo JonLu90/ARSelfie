@@ -16,7 +16,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .red
+        view.backgroundColor = .gray
         
         guard ARFaceTrackingConfiguration.isSupported else { fatalError() }
         sceneView.delegate = self
@@ -25,8 +25,11 @@ class ViewController: UIViewController {
         setupConstraints()
     }
 
+    // UI properties
     let sceneView = ARSCNView()
     let snapButton = UIButton()
+    let displayPhotoView = UIImageView()
+    let descriptionLabel = UILabel()
     
     private func setupViews() {
         view.addSubview(sceneView)
@@ -34,16 +37,26 @@ class ViewController: UIViewController {
         sceneView.addGestureRecognizer(tapSwitch)
         
         view.addSubview(snapButton)
-        snapButton.backgroundColor = .blue
+        snapButton.backgroundColor = .darkGray
         snapButton.setTitle("Snap!", for: .normal)
         snapButton.layer.cornerRadius = 5.0
         let tapSnap = UITapGestureRecognizer(target: self, action: #selector(tapToSnap(_:)))
         snapButton.addGestureRecognizer(tapSnap)
+        
+        sceneView.addSubview(displayPhotoView)
+        displayPhotoView.isHidden = true
+        
+        view.addSubview(descriptionLabel)
+        descriptionLabel.text = "Tap your forehead to change your program to show it off to your followers !"
+        descriptionLabel.numberOfLines = 0
     }
     
     private func setupConstraints() {
         sceneView.translatesAutoresizingMaskIntoConstraints = false
         snapButton.translatesAutoresizingMaskIntoConstraints = false
+        displayPhotoView.translatesAutoresizingMaskIntoConstraints = false
+        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         NSLayoutConstraint.activate([
             sceneView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             sceneView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
@@ -53,7 +66,16 @@ class ViewController: UIViewController {
             snapButton.topAnchor.constraint(equalTo: sceneView.bottomAnchor, constant: 16),
             snapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             snapButton.heightAnchor.constraint(equalToConstant: 32),
-            snapButton.widthAnchor.constraint(equalToConstant: 72)
+            snapButton.widthAnchor.constraint(equalToConstant: 72),
+            
+            displayPhotoView.topAnchor.constraint(equalTo: sceneView.topAnchor),
+            displayPhotoView.leadingAnchor.constraint(equalTo: sceneView.leadingAnchor),
+            displayPhotoView.bottomAnchor.constraint(equalTo: sceneView.bottomAnchor),
+            displayPhotoView.trailingAnchor.constraint(equalTo: sceneView.trailingAnchor),
+            
+            descriptionLabel.topAnchor.constraint(equalTo: snapButton.bottomAnchor, constant: 8),
+            descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8)
         ])
     }
     
@@ -92,8 +114,8 @@ class ViewController: UIViewController {
     
     @objc private func tapToSnap(_ sender: UIButton) {
         let image = sceneView.snapshot()
-        print(image.size)
-        print("Snap !")
+        displayPhotoView.image = image
+        displayPhotoView.isHidden = false
     }
 }
 
