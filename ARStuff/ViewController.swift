@@ -116,6 +116,21 @@ class ViewController: UIViewController {
         let image = sceneView.snapshot()
         displayPhotoView.image = image
         displayPhotoView.isHidden = false
+        
+        let alert = UIAlertController(title: "Selfie !", message: "I know what you did there", preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { [weak self](_) in
+            self?.displayPhotoView.isHidden = true
+        }
+        alert.addAction(cancelAction)
+        
+        let saveAction = UIAlertAction(title: "Save", style: .default) { [weak self](_) in
+            print("Save !")
+            self?.displayPhotoView.isHidden = true
+        }
+        alert.addAction(saveAction)
+        
+        present(alert, animated: true, completion: nil)
     }
 }
 
