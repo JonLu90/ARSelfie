@@ -26,20 +26,34 @@ class ViewController: UIViewController {
     }
 
     let sceneView = ARSCNView()
-
+    let snapButton = UIButton()
+    
     private func setupViews() {
         view.addSubview(sceneView)
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapToSwitch(_:)))
-        sceneView.addGestureRecognizer(tapGesture)
+        let tapSwitch = UITapGestureRecognizer(target: self, action: #selector(tapToSwitch(_:)))
+        sceneView.addGestureRecognizer(tapSwitch)
+        
+        view.addSubview(snapButton)
+        snapButton.backgroundColor = .blue
+        snapButton.setTitle("Snap!", for: .normal)
+        snapButton.layer.cornerRadius = 5.0
+        let tapSnap = UITapGestureRecognizer(target: self, action: #selector(tapToSnap(_:)))
+        snapButton.addGestureRecognizer(tapSnap)
     }
     
     private func setupConstraints() {
         sceneView.translatesAutoresizingMaskIntoConstraints = false
+        snapButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             sceneView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             sceneView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             sceneView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150)
+            sceneView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -150),
+            
+            snapButton.topAnchor.constraint(equalTo: sceneView.bottomAnchor, constant: 16),
+            snapButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            snapButton.heightAnchor.constraint(equalToConstant: 32),
+            snapButton.widthAnchor.constraint(equalToConstant: 72)
         ])
     }
     
@@ -58,7 +72,7 @@ class ViewController: UIViewController {
     
     private func updateFeatures(for node: SCNNode, using anchor: ARFaceAnchor) {
       // 1
-      let child = node.childNode(withName: "nose", recursively: false) as? EmojiNode
+      let child = node.childNode(withName: "forehead", recursively: false) as? EmojiNode
 
       // 2
       let vertices = [anchor.geometry.vertices[20]]
@@ -75,6 +89,12 @@ class ViewController: UIViewController {
             node.next()
         }
     }
+    
+    @objc private func tapToSnap(_ sender: UIButton) {
+        let image = sceneView.snapshot()
+        print(image.size)
+        print("Snap !")
+    }
 }
 
 extension ViewController: ARSCNViewDelegate {
@@ -90,13 +110,13 @@ extension ViewController: ARSCNViewDelegate {
         node.geometry?.firstMaterial?.transparency = 0.0
 
         // 2
-        let noseNode = EmojiNode(with: options)
+        let foreheadNode = EmojiNode(with: options)
 
         // 3
-        noseNode.name = "nose"
+        foreheadNode.name = "forehead"
 
         // 4
-        node.addChildNode(noseNode)
+        node.addChildNode(foreheadNode)
 
         // 5
         updateFeatures(for: node, using: faceAnchor)
